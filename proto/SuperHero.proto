@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package sb;
+option java_package = "sb.exploringProtobuffs.superhero.generated";
+option java_outer_classname = "SuperHeroOuterClass";
+option java_multiple_files = true;
+
+message PersonalInformation {
+  required string realName = 1;
+  required string heroName = 2;
+  enum Gender {
+    male = 0;
+    female = 1;
+  }
+  optional Gender gender = 3;
+}
+
+message SuperHeroAbilities {
+  required string abilitiesCommaSeparated = 1;
+}
+
+message Superhero {
+  required PersonalInformation personalInfo = 1;
+  repeated SuperHeroAbilities powers = 2;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sb.exploringProtobuffs.superhero.generated.SuperheroTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-11T12:00:09" hostname="pop-os" time="0.063">
+  <properties/>
+  <testcase name="SuperHero()" classname="sb.exploringProtobuffs.superhero.generated.SuperheroTest" time="0.063"/>
+  <system-out><![CDATA[SuperHero Personal Information : realName: "Bruce Wayne"
+heroName: "Batman"
+gender: male
+
+SuperHero Abilites :abilitiesCommaSeparated: "Money"
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
