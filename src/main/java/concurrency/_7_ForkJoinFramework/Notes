@@ -1,0 +1,29 @@
+✅ 1. What is ForkJoinPool?
+
+It is a special type of thread pool for recursive, parallel tasks.
+Designed for "work-stealing", meaning idle threads can “steal” work from busy threads to maximize CPU utilization.
+Best used for CPU-bound tasks (not IO-bound).
+
+
+✅ 2. Core Classes:
+
+ForkJoinPool: the pool that runs the tasks.
+RecursiveTask<V>: use this when your task returns a result.
+RecursiveAction: use this when your task doesn’t return anything (void).
+
+✅ 3. Important Notes
+
+| Feature           | Explanation                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| **Work-Stealing** | Threads steal unfinished tasks from others to improve utilization.                       |
+| **Fork()**        | Asynchronously execute a subtask.                                                        |
+| **Join()**        | Wait and get the result of the subtask.                                                  |
+| **Invoke()**      | Submit a task and wait for result.                                                       |
+| **Threshold**     | Controls granularity — when to stop dividing and start processing directly.              |
+| **Common Pool**   | ForkJoinPool has a global default pool, can be accessed via `ForkJoinPool.commonPool()`. |
+
+✅ 4. When to Use ForkJoinPool?
+
+Recursive divide-and-conquer problems (e.g., Merge Sort, Parallel Sum, File Searching).
+CPU-bound parallel processing.
+Avoid for IO-bound or blocking tasks (use ExecutorService instead).

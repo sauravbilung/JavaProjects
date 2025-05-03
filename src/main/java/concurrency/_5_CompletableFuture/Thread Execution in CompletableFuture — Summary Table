@@ -1,0 +1,42 @@
+| Method Variant                           | Task Type          | Executor Provided? | Thread Used                              |
+| ---------------------------------------- | ------------------ | ------------------ | ---------------------------------------- |
+| `supplyAsync(() -> ...)`                 | Returns a value    | ❌ No               | `ForkJoinPool.commonPool()`              |
+| `supplyAsync(() -> ..., executor)`       | Returns a value    | ✅ Yes              | A thread from the given `executor`       |
+| `runAsync(() -> ...)`                    | No return (void)   | ❌ No               | `ForkJoinPool.commonPool()`              |
+| `runAsync(() -> ..., executor)`          | No return (void)   | ✅ Yes              | A thread from the given `executor`       |
+| `thenApply()`, `thenCombine()`, etc.     | Sync continuation  | N/A                | Thread of the **last completed stage**   |
+| `thenApplyAsync()`, `thenCombineAsync()` | Async continuation | ❌ No               | `ForkJoinPool.commonPool()`              |
+| `thenApplyAsync(..., executor)`          | Async continuation | ✅ Yes              | A thread from the given `executor`       |
+| `join()`, `get()`                        | Blocking read      | N/A                | **Calling thread** (usually main thread) |
+
+
+🧠 Explanation of Thread Sources
+1. Main Thread
+Used only if:
+You call blocking methods like .get() or .join()
+Or write synchronous code (no async methods)
+
+2. ForkJoinPool.commonPool()
+Used by default for:
+supplyAsync() and runAsync() without an executor
+thenApplyAsync(), thenCombineAsync() without executor
+Shared across the JVM; threads are daemon, work-stealing
+
+3. Custom Executor
+You can provide your own ExecutorService: ExecutorService executor = Executors.newFixedThreadPool(4);
+* Used for full control over threads, task isolation, tuning performance.
+* Needed for blocking tasks (I/O, sleep) to avoid starving the common pool.
+
+✅ Good Practice Tip
+
+| Task Type            | Best Thread Pool Strategy                             |
+| -------------------- | ----------------------------------------------------- |
+| CPU-bound            | Default `ForkJoinPool` is fine                        |
+| Blocking / I/O       | Use custom `ExecutorService`                          |
+| High-concurrency app | Use thread pool with fine-tuned size and queue policy |
+
+
+Note :
+
+When we call new Thread(runnable), we are explicitly creating a brand new thread, not using any thread pool (neither ForkJoinPool nor ExecutorService).
+It's a raw OS thread, completely independent.
