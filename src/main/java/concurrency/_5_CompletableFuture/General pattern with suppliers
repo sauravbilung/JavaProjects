@@ -1,0 +1,9 @@
+public class MyTask implements Supplier<ResultType> {
+    @Override
+    public ResultType get() {
+        // complex logic
+        return someResult;
+    }
+}
+
+CompletableFuture<ResultType> future = CompletableFuture.supplyAsync(new MyTask());

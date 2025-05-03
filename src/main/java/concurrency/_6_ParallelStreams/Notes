@@ -1,0 +1,48 @@
+🔄 Parallel Streams in Java — a feature introduced in Java 8 that allows you to process collections concurrently with minimal code.
+
+⚡ 1. What are Parallel Streams?
+A parallel stream divides the data into chunks, processes them in multiple threads, and merges the result — all without manual thread management.
+
+It's built on ForkJoinPool.commonPool under the hood.
+
+Syntax : list.parallelStream().forEach(item -> process(item));
+
+
+⚠️ When to Use It
+✅ Use when:
+
+Your data set is large
+Each operation is CPU-bound
+You don’t need to maintain order
+
+🚫 Avoid when:
+
+Order of processing matters
+Tasks are I/O bound or fast
+You’re modifying shared state (mutable objects)
+
+⚙️ How It Works Internally
+
+Uses ForkJoinPool.commonPool
+Each stream operation is submitted as a task to be recursively split and joined
+Uses spliterator to divide work
+
+✅ Summary (For Interview)
+
+| Topic               | Details                                         |
+| ------------------- | ----------------------------------------------- |
+| `.parallelStream()` | Concurrent version of stream                    |
+| ForkJoinPool        | Default executor behind parallel streams        |
+| `forEachOrdered`    | Maintains order of original list                |
+| When to use         | CPU-bound, large datasets, stateless operations |
+| When to avoid       | Small datasets, I/O tasks, shared state         |
+
+
+🔧 Customize Thread Pool (optional)
+
+ForkJoinPool customPool = new ForkJoinPool(4);
+customPool.submit(() ->
+    list.parallelStream().forEach(item -> {
+        // process
+    })
+).join();
