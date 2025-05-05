@@ -1,0 +1,58 @@
+ExecutorService is a Java interface that manages a pool of threads and allows asynchronous task execution using submit() or execute() methods.
+
+🧵 Why use ExecutorService?
+
+Avoid manually creating threads (new Thread(...))
+Reuse threads from a pool
+Submit tasks (Runnable or Callable)
+Handle results via Future
+Gracefully shut down the thread pool
+
+🔁 Synchronous (Blocking)
+
+Tasks run one after another.
+Each task waits for the previous one to finish.
+The caller blocks until the task is complete.
+
+⚡ Asynchronous (Non-blocking)
+
+Tasks start and continue separately.
+The caller doesn't wait; it can move on.
+The result is handled later, often via callbacks, Future, or CompletableFuture.
+
+
+Callable + Future creates asynchronous tasks, but we must block using .get() to get the result.
+CompletableFuture also runs asynchronously, but gives non-blocking tools to handle results without calling .get() or .join().
+
+✅ Blocking vs Waiting in Java
+
+| Term         | Meaning                                                                                                                |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| **Blocking** | The thread is **stuck** (blocked) because it's waiting for a **resource** (e.g., lock, I/O, another thread to finish). |
+| **Waiting**  | The thread is **intentionally paused** (using `wait()`) until another thread **notifies** it.                          |
+
+🔍 Key Differences:
+
+wait() → enters waiting state, needs notify()/notifyAll() to wake up.
+A thread is blocked when:
+It's trying to acquire a lock held by another thread (synchronized, ReentrantLock).
+It's waiting for I/O or network response.
+It's calling join() to wait for another thread to finish.
+
+What does Thread.interrupt() do?
+Calling interrupt() requests that a thread stop what it's doing — but it’s not a forceful kill. It’s up to the code to handle the interruption appropriately.
+
+How interruption behaves in different thread states:
+
+| **Thread State**                                                   | **What happens when interrupted**                                                                                                                           |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **RUNNABLE (Running)**                                             | ✅ No exception. The thread continues running unless it **checks the interrupt flag** using `Thread.interrupted()` or `isInterrupted()` and decides to stop. |
+| **BLOCKED** (waiting to acquire a lock)                            | ❌ No exception. The thread remains blocked. The interrupt is **ignored** in terms of behavior but **sets the interrupt flag**.                              |
+| **WAITING / TIMED\_WAITING** (e.g., `wait()`, `sleep()`, `join()`) | ✅ Throws `InterruptedException`. You can either **handle it** (e.g., clean up or stop) or **ignore** it in a `try-catch` block.                             |
+
+
+All three methods — wait(), join(), and sleep() — can throw InterruptedException because they cause a thread to pause its execution, making it susceptible to being interrupted.
+A thread in the BLOCKED state will not throw an InterruptedException if interrupted, because BLOCKED means it is waiting to acquire an intrinsic lock (monitor) held by
+another thread — not waiting through methods like wait(), sleep(), or join() that are interruptible.
+
+Among Java's lock mechanisms, only ReentrantLock (and other java.util.concurrent.locks) can be interrupted while blocked, using lockInterruptibly().
