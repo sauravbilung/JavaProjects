@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class _4_ScheduledExecutorService {
+public class _6_ScheduledExecutorService {
 
     public static void main(String[] args) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -40,9 +40,19 @@ public class _4_ScheduledExecutorService {
 * delay → wait after a task finishes before starting the next one
 *
 *
+* Important :
 *
+* 🔍 Issue with scheduleAtFixedRate()
+* scheduleAtFixedRate() creates and submits a new task at every fixed interval, regardless of whether the previous task has finished.
+* This can lead to problems if each task consistently takes longer to execute than the interval between executions.
 *
-| Term                                           | Correct Understanding |
-| **Fixed Rate (`scheduleAtFixedRate`)**         | Start the **next task after a fixed delay from the START** of the previous task — even if the previous task is still running. (Strict schedule) |
-| **Fixed Delay (`scheduleWithFixedDelay`)**     | **Wait for the previous task to finish**, then wait for the given delay, then start the next task. (Flexible schedule) |
- */
+* In such cases:
+* The executor keeps submitting new tasks.
+* Tasks may accumulate in the queue or run in parallel (if thread pool allows).
+* Over time, this can cause memory issues or even crash the program due to too many pending or active tasks.
+*
+* scheduledWithFixedDelay() method creates a new task only after the previous task has finished.
+*
+* But it doesn't mean scheduleAtFixedRate() is useless. We want to run some fixed task at every interval and we are sure that the task will complete within
+* the interval. Eg: polling a sensor every hour.
+*/

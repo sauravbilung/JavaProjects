@@ -2,7 +2,7 @@ package concurrency._1_threadmanagement;
 
 import java.util.concurrent.CompletableFuture;
 
-public class _5_CompletableFuture {
+public class _7_CompletableFuture {
 
     public static void main(String[] args) {
         CompletableFuture.supplyAsync(() -> {

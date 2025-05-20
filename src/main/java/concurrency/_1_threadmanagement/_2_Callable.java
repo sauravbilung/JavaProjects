@@ -33,5 +33,20 @@ public class _2_Callable {
 *
 * In simple words:
 * ExecutorService : To manage and control asynchronous task execution.
-* Executor : 	To create instances of thread pools or executor services easily.
+* Executors : 	To create instances of thread pools or executor services easily.
+*
+*
+* Not used but for completion :
+*
+* Executor is an interface that defines a simple contract for executing Runnable tasks. The execution may be asynchronous, depending on the implementation.
+* It has only one method : void execute(Runnable command);
+*
+* Whether the task is run asynchronously or not depends on the implementation:
+*
+* Example of synchronous execution:
+* Executor directExecutor = command -> command.run();  // runs in caller's thread
+*
+* Example of asynchronous execution:
+* Executor asyncExecutor = Executors.newSingleThreadExecutor();  // runs in separate thread
+*
 */
