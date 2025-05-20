@@ -2,7 +2,7 @@ package concurrency._2_SynchronizationAndLocks;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class _6_DeadlockAvoidance {
+public class _9_DeadlockAvoidance {
 
     private static final ReentrantLock lockA = new ReentrantLock();
     private static final ReentrantLock lockB = new ReentrantLock();

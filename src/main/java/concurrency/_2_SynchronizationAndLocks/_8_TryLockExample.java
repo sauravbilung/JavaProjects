@@ -1,9 +1,10 @@
 package concurrency._2_SynchronizationAndLocks;
 
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class _5_TryLockExample {
+public class _8_TryLockExample {
 
     private final ReentrantLock lock = new ReentrantLock();
 
@@ -28,15 +29,14 @@ public class _5_TryLockExample {
     }
 
     public static void main(String[] args) {
-        _5_TryLockExample example = new _5_TryLockExample();
+        _8_TryLockExample example = new _8_TryLockExample();
 
         Runnable task = example::accessResource;
+        var executorService = Executors.newFixedThreadPool(2);
+        executorService.submit(task);
+        executorService.submit(task);
 
-        Thread t1 = new Thread(task);
-        Thread t2 = new Thread(task);
-
-        t1.start();
-        t2.start();
+        executorService.shutdown();
     }
 }
 
@@ -47,7 +47,7 @@ while (!lock.tryLock()) {
 }
 
 💡 Conclusion:
-lock() is efficient and does not cause busy waiting. By using lock(). if lock is not available, OS puts thread to sleep until it's notified.
+lock() is efficient and does not cause busy waiting. By using lock(). if lock is not available, OS puts thread to sleep(blocked state) until it's notified.
 tryLock() is useful when you want to avoid blocking and possibly do something else if the lock isn't immediately available.
 
 🔍 If tryLock() often skips the critical section… then why use it at all?

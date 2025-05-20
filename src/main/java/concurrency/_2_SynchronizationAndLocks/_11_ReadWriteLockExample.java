@@ -2,7 +2,7 @@ package concurrency._2_SynchronizationAndLocks;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class _8_ReadWriteLockExample {
+public class _11_ReadWriteLockExample {
     private int counter = 0;
     private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
 
@@ -28,7 +28,7 @@ public class _8_ReadWriteLockExample {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        _8_ReadWriteLockExample example = new _8_ReadWriteLockExample();
+        _11_ReadWriteLockExample example = new _11_ReadWriteLockExample();
 
         // Writer thread (write 100 times)
         Thread writer = new Thread(() -> {

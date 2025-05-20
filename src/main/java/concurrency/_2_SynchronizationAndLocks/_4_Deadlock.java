@@ -1,6 +1,6 @@
 package concurrency._2_SynchronizationAndLocks;
 
-public class _3_Deadlock {
+public class _4_Deadlock {
 
     private static final Object Lock1 = new Object();
     private static final Object Lock2 = new Object();
