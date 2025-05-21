@@ -22,13 +22,14 @@ public class _1_CompletableFutureExamples {
 
     public static void basicAsyncWithNoReturn() {
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-            System.out.println("Running in background");
+            System.out.println("No return and running in background");
         });
+        sleep(1000);
     }
 
     // 2. Chaining with thenApply
     public static void chainingThenApply() {
-        // thenApply() – Transform the result
+        // thenApply() – Transform the result. Runs after previous stage completes, on the same thread if possible.
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Java")
                 .thenApply(name -> name + " Concurrency")
                 .thenApply(String::toUpperCase);
@@ -120,6 +121,7 @@ public class _1_CompletableFutureExamples {
 
     public static void main(String[] args) {
         basicAsync();
+        basicAsyncWithNoReturn();
         chainingThenApply();
         combineTwoFutures();
         composeFutures();

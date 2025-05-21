@@ -2,7 +2,7 @@ package concurrency._2_SynchronizationAndLocks;
 
 import java.util.concurrent.locks.StampedLock;
 
-public class _9_StampedLockExample {
+public class _12_StampedLockExample {
     private int counter = 0;
     private final StampedLock stampedLock = new StampedLock();
 
@@ -39,7 +39,7 @@ public class _9_StampedLockExample {
         *   When you want to reduce contention and improve throughput vs. using traditional ReentrantReadWriteLock
         */
 
-        _9_StampedLockExample example = new _9_StampedLockExample();
+        _12_StampedLockExample example = new _12_StampedLockExample();
 
         Runnable writeTask = () -> {
             for (int i = 0; i < 1000; i++) {

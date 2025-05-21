@@ -6,3 +6,30 @@
 | Fine-grained control needed | `ReentrantLock` |
 | Read-heavy scenarios | `ReadWriteLock` |
 | Performance-critical reads | `StampedLock` |
+
+ReadWriteLock supports shared reading and exclusive writing, while StampedLock adds optimistic reads
+and token-based unlocking for higher performance in read-heavy use cases.
+
+Synchronised keyword :
+The synchronized keyword in Java is used to control access to blocks of code or methods by multiple threads.
+It ensures only one thread can execute the synchronized code at a time, providing mutual exclusion (mutex) and helping prevent race conditions.
+
+Critical Section :
+A critical section is a part of code that accesses shared resources and must be executed by only one thread at a time to prevent race conditions.
+
+Monitor lock :
+
+A monitor lock is a built-in lock associated with every Java object that allows only one thread at a time to execute synchronized code blocks
+or methods on that object.
+For static synchronized methods, the monitor lock is on the Class object, not the instance.
+
+✅ Explanation:
+For non-static synchronized methods:
+monitor lock is on this (i.e., the instance).
+
+For static synchronized methods:
+monitor lock is on the Class object (ClassName.class).
+
+Reentrant lock :
+
+A Reentrant Lock is a type of lock in Java that allows a thread to acquire the same lock multiple times without causing a deadlock.

@@ -3,7 +3,7 @@ package concurrency._2_SynchronizationAndLocks;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class _4_ReentrantLockExample {
+public class _5_ReentrantLock {
 
     private int counter = 0;
     private final Lock lock = new ReentrantLock();
@@ -22,7 +22,7 @@ public class _4_ReentrantLockExample {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        _4_ReentrantLockExample example = new _4_ReentrantLockExample();
+        _5_ReentrantLock example = new _5_ReentrantLock();
 
         Runnable task = () -> {
             for (int i = 0; i < 1000; i++) {

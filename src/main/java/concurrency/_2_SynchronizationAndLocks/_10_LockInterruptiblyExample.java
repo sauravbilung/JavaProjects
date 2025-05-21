@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /*
 * Goal : To show how a thread waiting for a lock can be safely interrupted and stop waiting
 */
-public class _7_LockInterruptiblyExample {
+public class _10_LockInterruptiblyExample {
     private static final ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) throws InterruptedException {

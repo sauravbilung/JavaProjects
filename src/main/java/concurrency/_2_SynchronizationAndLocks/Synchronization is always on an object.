@@ -1,0 +1,32 @@
+**Synchronization in Java is always on an object**.
+In Java, synchronization is achieved using a **monitor** associated with an object, which acts as a lock to control access to a critical section of code. Here's a breakdown to clarify:
+
+1. **"this"**: When you use the `synchronized` keyword on a method or block and associate it with the current instance of the class (`this`), the monitor of the current object is used. For example:
+   ```java
+   synchronized void myMethod() {
+       // Critical section
+   }
+   ```
+   This is equivalent to `synchronized(this)` in a block.
+
+2. **Any object**: You can synchronize on any object by using a `synchronized` block. For example:
+   ```java
+   Object lock = new Object();
+   synchronized(lock) {
+       // Critical section
+   }
+   ```
+   Here, the monitor of the `lock` object is used.
+
+3. **SomeClass.class**: For static synchronized methods or blocks, the monitor is associated with the `Class` object of the class (e.g., `SomeClass.class`). For example:
+   ```java
+   static synchronized void myStaticMethod() {
+       // Critical section
+   }
+   ```
+   This is equivalent to `synchronized(SomeClass.class)`.
+
+### Key Points:
+- Synchronization in Java always requires an object to serve as the monitor (lock).
+- Every Java object can act as a monitor, whether it's an instance of a class (`this` or another object) or the `Class` object for static synchronization.
+- The statement is accurate because synchronization in Java is always tied to an object's monitor, whether explicitly (in a `synchronized` block) or implicitly (in a `synchronized` method).

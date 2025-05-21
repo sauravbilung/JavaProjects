@@ -6,7 +6,7 @@ package concurrency._2_SynchronizationAndLocks;
  *
  * Note: synchronized locks per-instance unless the method is static, then it locks on the Class object.
  */
-public class _2_ReentrantExample {
+public class _3_ReentrantExample {
 
     public static void main(String[] args) {
         // Lock on same object is reentrant.
@@ -18,7 +18,8 @@ public class _2_ReentrantExample {
 
     private static void syncOnSameObjectIsReentrant() {
         ReentrantLockingExample example = new ReentrantLockingExample();
-        Thread t1 = new Thread(example::methodA, "Thread-1");
+        // Thread t1 = new Thread(() -> example.methodA());
+        Thread t1 = new Thread(example::methodA, "Thread-1"); // Equivalent to previous statement.
         t1.start();
     }
 

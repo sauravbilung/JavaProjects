@@ -1,0 +1,19 @@
+| Method                  | Takes Result from Previous Stage? | Returns a Value? | Returns a CompletableFuture? | Description                                                                   |
+| ----------------------- | --------------------------------- | ---------------- | ---------------------------- | ----------------------------------------------------------------------------- |
+| `thenRun()`             | ❌ No                              | ❌ No             | ❌ No                         | Run a `Runnable` after completion.                                            |
+| `thenRunAsync()`        | ❌ No                              | ❌ No             | ❌ No                         | Same as `thenRun()`, but runs in another thread (optionally custom executor). |
+| `thenAccept()`          | ✅ Yes                             | ❌ No             | ❌ No                         | Accept result and run a `Consumer`.                                           |
+| `thenAcceptAsync()`     | ✅ Yes                             | ❌ No             | ❌ No                         | Same as `thenAccept()`, but async.                                            |
+| `thenApply()`           | ✅ Yes                             | ✅ Yes            | ❌ No                         | Transform the result using a `Function`.                                      |
+| `thenApplyAsync()`      | ✅ Yes                             | ✅ Yes            | ❌ No                         | Same as `thenApply()`, but async.                                             |
+| `thenCompose()`         | ✅ Yes                             | ✅ Yes            | ✅ Yes                        | Flatten nested futures.                                                       |
+| `thenComposeAsync()`    | ✅ Yes                             | ✅ Yes            | ✅ Yes                        | Async version of `thenCompose()`.                                             |
+| `thenCombine()`         | ✅ Yes + 1 More                    | ✅ Yes            | ❌ No                         | Combine two futures' results.                                                 |
+| `thenCombineAsync()`    | ✅ Yes + 1 More                    | ✅ Yes            | ❌ No                         | Async version.                                                                |
+| `thenAcceptBoth()`      | ✅ Yes + 1 More                    | ❌ No             | ❌ No                         | Consume both results.                                                         |
+| `thenAcceptBothAsync()` | ✅ Yes + 1 More                    | ❌ No             | ❌ No                         | Async version.                                                                |
+| `runAfterBoth()`        | ❌ No (just completion)            | ❌ No             | ❌ No                         | Run something after both are done.                                            |
+| `runAfterBothAsync()`   | ❌ No                              | ❌ No             | ❌ No                         | Async version.                                                                |
+| `applyToEither()`       | ✅ Yes (first completed)           | ✅ Yes            | ❌ No                         | Use result of whichever future finishes first.                                |
+| `acceptEither()`        | ✅ Yes (first completed)           | ❌ No             | ❌ No                         | Consume result of whichever completes first.                                  |
+| `runAfterEither()`      | ❌ No                              | ❌ No             | ❌ No                         | Run something after either completes.                                         |
