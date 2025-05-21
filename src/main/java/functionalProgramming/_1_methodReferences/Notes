@@ -1,0 +1,5 @@
+
+Functional programming : It is a way of writing code more declaratively. We specify what we want to do rather than dealing
+with a state of objects.
+
+Lambda expression : A lambda expression is a concise way to implement a functional interface.
