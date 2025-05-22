@@ -1,1 +1,25 @@
 A functional interface is an interface with exactly one abstract method, but it can have any number of static or default methods.
+
+Several of the common functional interfaces provides a number of helpful default interface methods. All of these facilitate
+modifying or combining functional interfaces of the same type.
+
+| Functional Interface     | Abstract Method       | Convenience Methods                                | Purpose                                             |
+| ------------------------ | --------------------- | -------------------------------------------------- | --------------------------------------------------- |
+| **Predicate<T>**         | `boolean test(T t)`   | `and()`, `or()`, `negate()`                        | Combine multiple conditions logically               |
+| **Function<T, R>**       | `R apply(T t)`        | `andThen()`, `compose()`                           | Chain function calls (before/after)                 |
+| **Consumer<T>**          | `void accept(T t)`    | `andThen()`                                        | Execute multiple consumers in order                 |
+| **Supplier<T>**          | `T get()`             | *(None)*                                           | Supplies a value with no input                      |
+| **UnaryOperator<T>**     | `T apply(T t)`        | `andThen()`, `compose()` (inherited from Function) | Transform input using chained operations            |
+| **BinaryOperator<T>**    | `T apply(T t1, T t2)` | `maxBy(Comparator)`, `minBy(Comparator)`           | Return the max/min of two elements using comparator |
+| **BiFunction<T, U, R>**  | `R apply(T t, U u)`   | `andThen()`                                        | Chain a Function after applying two-argument logic  |
+
+
+🧠 Quick Memory Tips
+
+🔁 andThen = “then do this” → Runs after current
+🔄 compose = “first do this” → Runs before current
+🚫 negate = flips Predicate result
+🧩 and/or = combine multiple conditions
+📊 maxBy/minBy = select based on comparison
+
+Note : andThen() applies the current function first, then the next; compose() applies the given function first, then the current one.

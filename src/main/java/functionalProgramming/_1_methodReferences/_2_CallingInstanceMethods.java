@@ -3,7 +3,7 @@ package functionalProgramming._1_methodReferences;
 public class _2_CallingInstanceMethods {
 
     /*
-     * Calling instance metod on a particular object
+     * Calling instance method on a particular object
      */
     public static void main(String[] args) {
 
