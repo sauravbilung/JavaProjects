@@ -1,0 +1,1 @@
+A functional interface is an interface with exactly one abstract method, but it can have any number of static or default methods.
