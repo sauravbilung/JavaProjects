@@ -1,0 +1,25 @@
+
+What does "Generic" mean in Java?
+
+Generics in Java allow you to define classes, interfaces, and methods with a placeholder for a data type, rather
+than using a fixed type or raw type. This tells Java ahead of time (at compile time) what type you're working with,
+providing type safety and eliminating the need for casting.
+
+Why use Generics?
+
+Type Safety: You get compile-time checks to avoid ClassCastException.
+Code Reusability: You can write one class/method that works with any data type.
+Avoid Casting: No need to manually cast objects from Object.
+
+
+We can define any collection without specifying the generic types, but it may lead to ClassCastException at runtime.
+
+In Java, generics provide compile-time type safety. If you skip the generic type, the compiler treats the collection as a raw type, meaning it does not enforce any type constraints.
+
+❗ Risk of not using generics:
+
+Lack of type safety
+Runtime errors (ClassCastException)
+Harder to maintain code
+
+Note : Raw types are discouraged and only allowed for backward compatibility. Using raw types disables generic type checks at compile-time.
