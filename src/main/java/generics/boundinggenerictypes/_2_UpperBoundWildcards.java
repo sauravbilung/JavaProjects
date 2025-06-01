@@ -11,7 +11,7 @@ public class _2_UpperBoundWildcards {
 
         // Instead we can use
         //List<? extends Number> list = new ArrayList<Integer>(); // Compiles, but we cannot add numbers
-        // Bust it does not allow us to add number types to it because we don't know what the exact type is.
+        // But it does not allow us to add number types to it because we don't know what the exact type is.
         // We cannot add anything (like Integer, Double, etc.) to the list because the compiler doesn’t know the specific subtype of Number it holds.
         // The only value we can add to a List<? extends Number> is null.
 
